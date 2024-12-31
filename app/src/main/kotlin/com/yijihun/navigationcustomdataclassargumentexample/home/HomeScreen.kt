@@ -49,40 +49,36 @@ fun Home(
     state: HomeScreen.State,
     modifier: Modifier = Modifier,
 ) {
-    Scaffold { innerPadding ->
-        Box(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(innerPadding),
+    Box(
+        modifier = modifier.fillMaxSize(),
+    ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
         ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                items(
-                    count = state.lectureList.size,
-                    key = { index -> index },
-                ) { index ->
-                    LectureItem(
-                        lectureName = state.lectureList[index].lectureName,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                state.eventSink(
-                                    HomeScreen.Event.OnLectureClick(
-                                        state.lectureList[index].lectureName,
-                                        state.studentGradeList,
-                                        state.lectureList[index],
-                                        state.studentList,
-                                    ),
-                                )
-                            },
-                    )
-                    HorizontalDivider(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        thickness = 1.dp,
-                        color = Color.LightGray,
-                    )
-                }
+            items(
+                count = state.lectureList.size,
+                key = { index -> index },
+            ) { index ->
+                LectureItem(
+                    lectureName = state.lectureList[index].lectureName,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            state.eventSink(
+                                HomeScreen.Event.OnLectureClick(
+                                    state.lectureList[index].lectureName,
+                                    state.studentGradeList,
+                                    state.lectureList[index],
+                                    state.studentList,
+                                ),
+                            )
+                        },
+                )
+                HorizontalDivider(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    thickness = 1.dp,
+                    color = Color.LightGray,
+                )
             }
         }
     }

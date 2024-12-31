@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
 import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.foundation.CircuitCompositionLocals
@@ -28,10 +31,13 @@ class MainActivity : ComponentActivity() {
                 val navigator = rememberCircuitNavigator(backStack)
 
                 CircuitCompositionLocals(circuit) {
-                    NavigableCircuitContent(
-                        navigator = navigator,
-                        backStack = backStack,
-                    )
+                    Scaffold { innerPadding ->
+                        NavigableCircuitContent(
+                            navigator = navigator,
+                            backStack = backStack,
+                            modifier = Modifier.padding(innerPadding),
+                        )
+                    }
                 }
             }
         }

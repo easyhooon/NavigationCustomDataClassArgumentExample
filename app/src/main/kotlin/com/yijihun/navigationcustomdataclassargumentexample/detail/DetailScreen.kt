@@ -48,40 +48,36 @@ fun Detail(
     state: DetailScreen.State,
     modifier: Modifier = Modifier,
 ) {
-    Scaffold { innerPadding ->
-        Box(
-            modifier = modifier
+    Box(
+        modifier = modifier.fillMaxSize(),
+    ) {
+        Column(
+            modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
+                .padding(horizontal = 8.dp),
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 8.dp),
-            ) {
-                DetailTopAppBar(
-                    popBackStack = {
-                        state.eventSink(DetailScreen.Event.OnBackClick)
-                    },
-                    lectureName = state.lectureName,
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "강의:\n ${state.lecture}",
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "교수: ${"홍길동"}",
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "수강생 목록:\n ${state.studentList}",
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "수강색 학년 분포:\n ${state.studentGradeDistribution}",
-                )
-            }
+            DetailTopAppBar(
+                popBackStack = {
+                    state.eventSink(DetailScreen.Event.OnBackClick)
+                },
+                lectureName = state.lectureName,
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "강의:\n ${state.lecture}",
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "교수: ${"홍길동"}",
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "수강생 목록:\n ${state.studentList}",
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "수강색 학년 분포:\n ${state.studentGradeDistribution}",
+            )
         }
     }
 }
